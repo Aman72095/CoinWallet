@@ -11,14 +11,14 @@ export default function Homepage() {
     const [message, setMessage] = useState("");
     const [amount, setAmount] = useState("");
 
-    const contractAddress = ""; // Replace with your deployed contract address
-    const abi = coin_Wallet_Abi.abi;
+    const contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"; // Replace with your deployed contract address
+    const abi = Coin_Wallet_Abi.abi;
 
     const getCoins = async () => {
         try {
-            if (coinWalletContract) {
-                const coinArray = await coinWalletContract.getCoins();
-                setCoins(coinsArray);
+            if (CoinWalletContract) {
+                const coinArray = await CoinWalletContract.getCoins();
+                setCoins(coinArray);
             }
         } catch (error) {
             console.error("Error fetching coins:", error);
@@ -27,8 +27,8 @@ export default function Homepage() {
 
     const sendCoin = async () => {
         try {
-            if (coinWalletContract && amount) {
-                const tx = await coinWalletContract.sendCoin(name, message, { value: ethers.utils.parseEther(amount) });
+            if (CoinWalletContract && amount) {
+                const tx = await CoinWalletContract.sendCoin(name, message, { value: ethers.utils.parseEther(amount) });
                 await tx.wait();
                 getCoins();
                 setName("");
@@ -98,12 +98,12 @@ export default function Homepage() {
 
     useEffect(() => {
         const initCoins = async () => {
-            if (coinWalletContract) {
+            if (CoinWalletContract) {
                 getCoins();
             }
         };
         initCoins();
-    }, [coinWalletContract]);
+    }, [CoinWalletContract]);
 
     return (
         <main className="container">
@@ -137,15 +137,14 @@ export default function Homepage() {
                 </div>
             )}
             <style jsx>{`
-               .container {
-          background-color: #4158D0;
-          background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-          ;
-          text-align:center;
-          position:absolute;
-          height:100%;
-          width:100%;
-        }
+                .container {
+                    background-color: #4158D0;
+                    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+                    text-align: center;
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                }
                 input {
                     margin: 10px;
                     padding: 10px;
@@ -165,3 +164,4 @@ export default function Homepage() {
         </main>
     );
 }
+
