@@ -1,8 +1,8 @@
 const hre = require("hardhat");
 
 async function main() {
-  const CoinWallet = await hre.ethers.getContractFactory("CoinWallet");
-  const contract = await CoinWallet.deploy(); //instance of contract
+  const TipJar = await hre.ethers.getContractFactory("TipJar");
+  const contract = await TipJar.deploy(); //instance of contract
 
   await contract.deployed();
   console.log("Address of contract:", contract.address);
