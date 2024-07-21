@@ -16,7 +16,7 @@ contract CoinWallet {
         owner = payable(msg.sender);
     }
 
-    function sendTip(string memory name, string memory message) public payable {
+    function sendCoin(string memory name, string memory message) public payable {
         require(msg.value > 0, "Please send an amount greater than 0 ether");
         owner.transfer(msg.value);
     coin.push(Coin(name, message, block.timestamp, msg.sender));
