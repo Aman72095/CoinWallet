@@ -15,13 +15,13 @@ async function consoleBalances(addresses) {
   }
 }
 
-// Function to log details of tips
-async function consoleTips(tips) {
-  for (const tip of tips) {
-    const timestamp = new Date(tip.timestamp * 1000).toLocaleString();
-    const name = tip.name;
-    const from = tip.from;
-    const message = tip.message;
+// Function to log details of coins
+async function consoleCoins(coins) {
+  for (const coin of coins) {
+    const timestamp = new Date(coin.timestamp * 1000).toLocaleString();
+    const name = coin.name;
+    const from = coin.from;
+    const message = coin.message;
     console.log(
       `At ${timestamp}, name: ${name}, address: ${from}, message: ${message}`
     );
@@ -30,8 +30,8 @@ async function consoleTips(tips) {
 
 async function main() {
   const [owner, from1, from2, from3] = await hre.ethers.getSigners();
-  const TipJar = await hre.ethers.getContractFactory("TipJar");
-  const contract = await TipJar.deploy();
+  const CoinWallet = await hre.ethers.getContractFactory("CoinWallet");
+  const contract = await CoinWallet.deploy();
 
   await contract.deployed();
   console.log("Address of contract:", contract.address);
@@ -43,19 +43,19 @@ async function main() {
     from3.address,
   ];
 
-  console.log("Before sending tips");
+  console.log("Before sending coins");
   await consoleBalances(addresses);
 
   const amount = { value: hre.ethers.utils.parseEther("1") };
-  await contract.connect(from1).sendTip("Amit", "Great tip!", amount);
-  await contract.connect(from2).sendTip("Ravi", "Thanks for the info!", amount);
-  await contract.connect(from3).sendTip("Ileana", "Keep it up!", amount);
+  await contract.connect(from1).sendCoin("Ram", "Great coin!", amount);
+  await contract.connect(from2).sendCoin("Om", "Thanks for the info!", amount);
+  await contract.connect(from3).sendCoin("Raj", "Keep it up!", amount);
 
-  console.log("After sending tips");
+  console.log("After sending coins");
   await consoleBalances(addresses);
 
-  const tips = await contract.getTips();
-  await consoleTips(tips);
+  const coins = await contract.getCoins();
+  await consoleCoins(coins);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
