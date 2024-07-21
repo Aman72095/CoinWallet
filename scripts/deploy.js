@@ -30,7 +30,7 @@ async function consoleCoins(coins) {
 
 async function main() {
   const [owner, from1, from2, from3] = await hre.ethers.getSigners();
-  const CoinWallet = await hre.ethers.getContractFactory("TipJar");
+  const CoinWallet = await hre.ethers.getContractFactory("CoinWallet");
   const contract = await CoinWallet.deploy();
 
   await contract.deployed();
@@ -47,7 +47,7 @@ async function main() {
   await consoleBalances(addresses);
 
   const amount = { value: hre.ethers.utils.parseEther("1") };
-  await contract.connect(from1).sendCoin("Amit", "Great tip!", amount);
+  await contract.connect(from1).sendCoin("Amit", "Great coin!", amount);
   await contract.connect(from2).sendCoin("Ravi", "Thanks for the info!", amount);
   await contract.connect(from3).sendCoin("Ileana", "Keep it up!", amount);
 
