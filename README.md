@@ -1,8 +1,8 @@
-# TipJar Dapp
+# CoinWallet 
 
 ## Description
 
-The TipJar contract is a simple Ethereum smart contract that allows users to send tips along with their names and messages. All the interactions with the smart contract can be made using the front-end of the project.
+The CoinWallet contract is a simple Ethereum smart contract that allows users to send coins along with their names and messages. All the interactions with the smart contract can be made using the front-end of the project.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ To use this project, you'll need to have Node.js and Hardhat installed.
 1. Clone the repository:
    git clone `repository url`
    
-   cd tipjar
+   cd CoinWallet
    
 3. Install dependencies:
     npm install
@@ -47,8 +47,9 @@ Deploying the Contract
 
 ## Contact
 For any questions or suggestions, feel free to open an issue or contact the repository owner.
-
-Mail - vermashiv1910@gmail.com 
+## Author 
+AMAN PATEL
+Mail - amanpatel52268@gmail.com 
 
 ## License
 
