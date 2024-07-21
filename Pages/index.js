@@ -12,23 +12,23 @@ export default function Homepage() {
     const [amount, setAmount] = useState("");
 
     const contractAddress = ""; // Replace with your deployed contract address
-    const abi = Coin_Wallet_Abi.abi;
+    const abi = coin_Wallet_Abi.abi;
 
     const getCoins = async () => {
         try {
-            if (coinwalletContract) {
-                const coinsArray = await CoinWalletContract.getcoins();
-                setCoins(CoinsArray);
+            if (coinWalletContract) {
+                const coinArray = await coinWalletContract.getCoins();
+                setCoins(coinsArray);
             }
         } catch (error) {
             console.error("Error fetching coins:", error);
         }
     };
 
-    const sendCoins = async () => {
+    const sendCoin = async () => {
         try {
-            if (CoinWalletContract && amount) {
-                const tx = await CoinWalletContract.sendCoin(name, message, { value: ethers.utils.parseEther(amount) });
+            if (coinWalletContract && amount) {
+                const tx = await coinWalletContract.sendCoin(name, message, { value: ethers.utils.parseEther(amount) });
                 await tx.wait();
                 getCoins();
                 setName("");
@@ -98,16 +98,16 @@ export default function Homepage() {
 
     useEffect(() => {
         const initCoins = async () => {
-            if (CoinWalletContract) {
+            if (coinWalletContract) {
                 getCoins();
             }
         };
         initCoins();
-    }, [CoinWalletContract]);
+    }, [coinWalletContract]);
 
     return (
         <main className="container">
-            <header><h1>Welcome to the Coin Wallet</h1></header>
+            <header><h1>Welcome to the coin Wallet</h1></header>
             {ethWallet && !defaultAccount && (
                 <button onClick={connectWalletHandler}>Connect Wallet</button>
             )}
@@ -118,7 +118,7 @@ export default function Homepage() {
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" />
                         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message" />
                         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount in ETH" />
-                        <button onClick={sendCoins}>Send Coin</button>
+                        <button onClick={sendCoin}>Send coin</button>
                     </div>
                     <h3>Coins:</h3>
                     {coins.length > 0 ? (
@@ -127,7 +127,7 @@ export default function Homepage() {
                                 <p><strong>Name:</strong> {coin.name}</p>
                                 <p><strong>Message:</strong> {coin.message}</p>
                                 <p><strong>From:</strong> {coin.from}</p>
-                                <p><strong>Timestamp:</strong> {new Date(tip.timestamp * 1000).toLocaleString()}</p>
+                                <p><strong>Timestamp:</strong> {new Date(coin.timestamp * 1000).toLocaleString()}</p>
                                 <hr />
                             </div>
                         ))
@@ -146,7 +146,6 @@ export default function Homepage() {
           height:100%;
           width:100%;
         }
-                }
                 input {
                     margin: 10px;
                     padding: 10px;
@@ -160,7 +159,7 @@ export default function Homepage() {
                     cursor: pointer;
                 }
                 button:hover {
-                    background-color: #4158D0;
+                    background-color: #005bb5;
                 }
             `}</style>
         </main>
