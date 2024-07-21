@@ -102,7 +102,7 @@ export default function Homepage() {
                 getCoins();
             }
         };
-        iniCoins();
+        initCoins();
     }, [CoinWalletContract]);
 
     return (
