@@ -118,7 +118,7 @@ export default function Homepage() {
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" />
                         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message" />
                         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount in ETH" />
-                        <button onClick={sendCoin}>Send Coin</button>
+                        <button onClick={sendCoins}>Send Coin</button>
                     </div>
                     <h3>Coins:</h3>
                     {coins.length > 0 ? (
