@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
 
@@ -9,7 +10,7 @@ contract CoinWallet {
         address from;
     }
 
-    Coin[] coin;
+    Coin[] coins;
     address payable owner;
 
     constructor() {
@@ -19,10 +20,10 @@ contract CoinWallet {
     function sendCoin(string memory name, string memory message) public payable {
         require(msg.value > 0, "Please send an amount greater than 0 ether");
         owner.transfer(msg.value);
-    coin.push(Coin(name, message, block.timestamp, msg.sender));
+        coins.push(Coin(name, message, block.timestamp, msg.sender));
     }
 
-    function getCoin() public view returns (Coin[] memory) {
-        return coin;
+    function getCoins() public view returns (Coin[] memory) {
+        return coins;
     }
 }
