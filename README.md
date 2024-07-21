@@ -48,7 +48,9 @@ Deploying the Contract
 ## Contact
 For any questions or suggestions, feel free to open an issue or contact the repository owner.
 ## Author 
+
 AMAN PATEL
+
 Mail - amanpatel52268@gmail.com 
 
 ## License
