@@ -43,7 +43,7 @@ Deploying the Contract
 
 * You just need to press the connect button and do note that your metamask should be on the same network as hardhat RPC-URL.
 * After this your metamask will ask you to confirm the connection.
-* When successfully connected we will be able to tip by insert the values from the live smart contract on blockchain.
+* When successfully connected we will be able to send coin by insert the values from the live smart contract on blockchain.
 
 ## Contact
 For any questions or suggestions, feel free to open an issue or contact the repository owner.
