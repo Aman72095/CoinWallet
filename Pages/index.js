@@ -1,42 +1,42 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import tip_Jar_Abi from "../artifacts/contracts/TipJar.sol/TipJar.json";
+import Coin_Wallet_Abi from "../artifacts/contracts/CoinWallet.sol/CoinWallet.json";
 
 export default function Homepage() {
     const [defaultAccount, setDefaultAccount] = useState(undefined);
     const [ethWallet, setEthWallet] = useState(undefined);
-    const [tipJarContract, setTipJarContract] = useState(undefined);
-    const [tips, setTips] = useState([]);
+    const [CoinWalletContract, setCoinWalletContract] = useState(undefined);
+    const [coins, setCoins] = useState([]);
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [amount, setAmount] = useState("");
 
-    const contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"; // Replace with your deployed contract address
-    const abi = tip_Jar_Abi.abi;
+    const contractAddress = ""; // Replace with your deployed contract address
+    const abi = Coin_Wallet_Abi.abi;
 
-    const getTips = async () => {
+    const getCoins = async () => {
         try {
-            if (tipJarContract) {
-                const tipsArray = await tipJarContract.getTips();
-                setTips(tipsArray);
+            if (coinwalletContract) {
+                const coinsArray = await CoinWalletContract.getcoins();
+                setCoins(CoinsArray);
             }
         } catch (error) {
-            console.error("Error fetching tips:", error);
+            console.error("Error fetching coins:", error);
         }
     };
 
-    const sendTip = async () => {
+    const sendCoins = async () => {
         try {
-            if (tipJarContract && amount) {
-                const tx = await tipJarContract.sendTip(name, message, { value: ethers.utils.parseEther(amount) });
+            if (CoinWalletContract && amount) {
+                const tx = await CoinWalletContract.sendCoin(name, message, { value: ethers.utils.parseEther(amount) });
                 await tx.wait();
-                getTips();
+                getCoins();
                 setName("");
                 setMessage("");
                 setAmount("");
             }
         } catch (error) {
-            console.error("Error sending tip:", error);
+            console.error("Error sending coin:", error);
         }
     };
 
@@ -60,7 +60,7 @@ export default function Homepage() {
             const provider = new ethers.providers.Web3Provider(ethWallet);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, abi, signer);
-            setTipJarContract(contract);
+            setCoinWalletContract(contract);
         } catch (error) {
             console.error("Error getting contract:", error);
         }
@@ -97,17 +97,17 @@ export default function Homepage() {
     }, [ethWallet]);
 
     useEffect(() => {
-        const initTips = async () => {
-            if (tipJarContract) {
-                getTips();
+        const initCoins = async () => {
+            if (CoinWalletContract) {
+                getCoins();
             }
         };
-        initTips();
-    }, [tipJarContract]);
+        iniCoins();
+    }, [CoinWalletContract]);
 
     return (
         <main className="container">
-            <header><h1>Welcome to the Tip Jar</h1></header>
+            <header><h1>Welcome to the Coin Wallet</h1></header>
             {ethWallet && !defaultAccount && (
                 <button onClick={connectWalletHandler}>Connect Wallet</button>
             )}
@@ -118,21 +118,21 @@ export default function Homepage() {
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" />
                         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message" />
                         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount in ETH" />
-                        <button onClick={sendTip}>Send Tip</button>
+                        <button onClick={sendCoin}>Send Coin</button>
                     </div>
-                    <h3>Tips:</h3>
-                    {tips.length > 0 ? (
-                        tips.map((tip, index) => (
+                    <h3>Coins:</h3>
+                    {coins.length > 0 ? (
+                        coins.map((coin, index) => (
                             <div key={index}>
-                                <p><strong>Name:</strong> {tip.name}</p>
-                                <p><strong>Message:</strong> {tip.message}</p>
-                                <p><strong>From:</strong> {tip.from}</p>
+                                <p><strong>Name:</strong> {coin.name}</p>
+                                <p><strong>Message:</strong> {coin.message}</p>
+                                <p><strong>From:</strong> {coin.from}</p>
                                 <p><strong>Timestamp:</strong> {new Date(tip.timestamp * 1000).toLocaleString()}</p>
                                 <hr />
                             </div>
                         ))
                     ) : (
-                        <p>No tips yet.</p>
+                        <p>No coins yet.</p>
                     )}
                 </div>
             )}
