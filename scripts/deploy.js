@@ -15,7 +15,7 @@ async function consoleBalances(addresses) {
   }
 }
 
-// Function to log details of coins
+// Function to log details of Coins
 async function consoleCoins(coins) {
   for (const coin of coins) {
     const timestamp = new Date(coin.timestamp * 1000).toLocaleString();
@@ -30,7 +30,7 @@ async function consoleCoins(coins) {
 
 async function main() {
   const [owner, from1, from2, from3] = await hre.ethers.getSigners();
-  const CoinWallet = await hre.ethers.getContractFactory("CoinWallet");
+  const CoinWallet = await hre.ethers.getContractFactory("TipJar");
   const contract = await CoinWallet.deploy();
 
   await contract.deployed();
@@ -47,9 +47,9 @@ async function main() {
   await consoleBalances(addresses);
 
   const amount = { value: hre.ethers.utils.parseEther("1") };
-  await contract.connect(from1).sendCoin("Ram", "Great coin!", amount);
-  await contract.connect(from2).sendCoin("Om", "Thanks for the info!", amount);
-  await contract.connect(from3).sendCoin("Raj", "Keep it up!", amount);
+  await contract.connect(from1).sendCoin("Amit", "Great tip!", amount);
+  await contract.connect(from2).sendCoin("Ravi", "Thanks for the info!", amount);
+  await contract.connect(from3).sendCoin("Ileana", "Keep it up!", amount);
 
   console.log("After sending coins");
   await consoleBalances(addresses);
@@ -64,5 +64,6 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
 
 
