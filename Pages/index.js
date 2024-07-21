@@ -137,9 +137,15 @@ export default function Homepage() {
                 </div>
             )}
             <style jsx>{`
-                .container {
-                    text-align: center;
-                    padding: 20px;
+               .container {
+          background-color: #4158D0;
+          background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+          ;
+          text-align:center;
+          position:absolute;
+          height:100%;
+          width:100%;
+        }
                 }
                 input {
                     margin: 10px;
@@ -154,7 +160,7 @@ export default function Homepage() {
                     cursor: pointer;
                 }
                 button:hover {
-                    background-color: #005bb5;
+                    background-color: #4158D0;
                 }
             `}</style>
         </main>
