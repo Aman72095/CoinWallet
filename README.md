@@ -5,7 +5,8 @@
 The CoinWallet contract is a simple Ethereum smart contract that allows users to send coins along with their names and messages. also it helps in finding out the last transaction details and address.
 
 //Features//
-The application has the following features
+
+ The application has the following features
 
 * Connect to MetaMask wallet
 
