@@ -42,10 +42,10 @@ Deploying the Contract
  After this, the project will be running on your localhost. Typically at http://localhost:3000/
 
 
-
-### Interacting with Front-end
-
+## Customization
 * You can customize the UI elements, styles, and behavior of the Coin Wallet component according to your project's requirements. Modify the JSX structure, CSS styles, and event handlers to align with your application's design and functionality.
+* 
+ ### Interacting with Front-end
 * You just need to press the connect button and do note that your metamask should be on the same network as hardhat RPC-URL.
 * After this your metamask will ask you to confirm the connection.
 * When successfully connected we will be able to send coin by insert the values from the live smart contract on blockchain.
